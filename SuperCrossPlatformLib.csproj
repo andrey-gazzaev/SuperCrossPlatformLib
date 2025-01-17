@@ -4,7 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
 
     <!-- add this piece -->
-    <RuntimeIdentifier>SuperCrossPlatformLib</RuntimeIdentifier>
+    <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <WasmMainJSPath>main.js</WasmMainJSPath>
     <!-- end -->
