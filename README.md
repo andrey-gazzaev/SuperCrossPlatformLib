@@ -11,9 +11,9 @@ and run next install `wasm-tools`
 ## How to run
 
 ```bash
-  dotnet publish -c Release
+  dotnet publish SuperCrossPlatformLib -c Release
 ```
 
-After that, copy all files from `wwwroot` to the `bin\Release\net9.0\browser-wasm\AppBundle` folder. 
+After that, copy all files from `SuperCrossPlatformLib\wwwroot` to the `SuperCrossPlatformLib\bin\Release\net9.0\browser-wasm\AppBundle` folder. 
 
 Now you can run the `index.html` file

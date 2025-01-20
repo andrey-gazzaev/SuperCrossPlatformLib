@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "m8oAFg/g534=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\qwerty\\Desktop\\SuperCrossPlatformLib\\SuperCrossPlatformLib\\SuperCrossPlatformLib.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\qwerty\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.1\\microsoft.net.illink.tasks.9.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

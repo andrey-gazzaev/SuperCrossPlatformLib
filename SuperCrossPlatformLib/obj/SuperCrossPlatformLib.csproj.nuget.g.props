@@ -13,7 +13,6 @@
     <SourceRoot Include="C:\Users\qwerty\.nuget\packages\" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)protobuf-net.buildtools\3.2.33\build\protobuf-net.BuildTools.props" Condition="Exists('$(NuGetPackageRoot)protobuf-net.buildtools\3.2.33\build\protobuf-net.BuildTools.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.net.illink.tasks\9.0.1\build\Microsoft.NET.ILLink.Tasks.props" Condition="Exists('$(NuGetPackageRoot)microsoft.net.illink.tasks\9.0.1\build\Microsoft.NET.ILLink.Tasks.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">

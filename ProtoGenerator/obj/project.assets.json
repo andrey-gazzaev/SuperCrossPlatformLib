@@ -15,137 +15,6 @@
           }
         }
       },
-      "Microsoft.NET.ILLink.Tasks/9.0.1": {
-        "type": "package",
-        "build": {
-          "build/Microsoft.NET.ILLink.Tasks.props": {}
-        }
-      },
-      "protobuf-net/3.2.45": {
-        "type": "package",
-        "dependencies": {
-          "protobuf-net.Core": "3.2.45"
-        },
-        "compile": {
-          "lib/net6.0/protobuf-net.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/protobuf-net.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "protobuf-net.BuildTools/3.2.33": {
-        "type": "package",
-        "build": {
-          "build/protobuf-net.BuildTools.props": {}
-        }
-      },
-      "protobuf-net.Core/3.2.45": {
-        "type": "package",
-        "dependencies": {
-          "System.Collections.Immutable": "7.0.0"
-        },
-        "compile": {
-          "lib/net6.0/protobuf-net.Core.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/protobuf-net.Core.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "protobuf-net.Grpc/1.2.2": {
-        "type": "package",
-        "dependencies": {
-          "Grpc.Core.Api": "2.66.0",
-          "System.IO.Pipelines": "8.0.0",
-          "protobuf-net": "2.4.8"
-        },
-        "compile": {
-          "lib/net8.0/protobuf-net.Grpc.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/protobuf-net.Grpc.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "protobuf-net.Reflection/3.2.12": {
-        "type": "package",
-        "dependencies": {
-          "protobuf-net.Core": "3.2.12"
-        },
-        "compile": {
-          "lib/netstandard2.0/protobuf-net.Reflection.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/protobuf-net.Reflection.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "System.Collections.Immutable/7.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net7.0/System.Collections.Immutable.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/System.Collections.Immutable.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/_._": {}
-        }
-      },
-      "System.IO.Pipelines/8.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/System.IO.Pipelines.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/System.IO.Pipelines.dll": {
-            "related": ".xml"
-          }
-        },
-        "build": {
-          "buildTransitive/net6.0/_._": {}
-        }
-      }
-    },
-    "net9.0/browser-wasm": {
-      "Grpc.Core.Api/2.66.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.1/Grpc.Core.Api.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.1/Grpc.Core.Api.dll": {
-            "related": ".pdb;.xml"
-          }
-        }
-      },
-      "Microsoft.NET.ILLink.Tasks/9.0.1": {
-        "type": "package",
-        "build": {
-          "build/Microsoft.NET.ILLink.Tasks.props": {}
-        }
-      },
       "protobuf-net/3.2.45": {
         "type": "package",
         "dependencies": {
@@ -273,57 +142,6 @@
         "lib/netstandard2.1/Grpc.Core.Api.pdb",
         "lib/netstandard2.1/Grpc.Core.Api.xml",
         "packageIcon.png"
-      ]
-    },
-    "Microsoft.NET.ILLink.Tasks/9.0.1": {
-      "sha512": "BKFAkdhUUJivAoKuSWcT23WH9E+AWQMJootzt9X+lnesOD2a2yNIe1ZQFtxB8H3ayskLBD5gYyIbj5GIfw7rZg==",
-      "type": "package",
-      "path": "microsoft.net.illink.tasks/9.0.1",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "Sdk/Sdk.props",
-        "THIRD-PARTY-NOTICES.TXT",
-        "analyzers/dotnet/cs/ILLink.CodeFixProvider.dll",
-        "analyzers/dotnet/cs/ILLink.RoslynAnalyzer.dll",
-        "build/Microsoft.NET.ILLink.Analyzers.props",
-        "build/Microsoft.NET.ILLink.Tasks.props",
-        "build/Microsoft.NET.ILLink.targets",
-        "microsoft.net.illink.tasks.9.0.1.nupkg.sha512",
-        "microsoft.net.illink.tasks.nuspec",
-        "tools/net472/ILLink.Tasks.dll",
-        "tools/net472/ILLink.Tasks.dll.config",
-        "tools/net472/Mono.Cecil.Mdb.dll",
-        "tools/net472/Mono.Cecil.Pdb.dll",
-        "tools/net472/Mono.Cecil.Rocks.dll",
-        "tools/net472/Mono.Cecil.dll",
-        "tools/net472/Sdk/Sdk.props",
-        "tools/net472/System.Buffers.dll",
-        "tools/net472/System.Collections.Immutable.dll",
-        "tools/net472/System.Memory.dll",
-        "tools/net472/System.Numerics.Vectors.dll",
-        "tools/net472/System.Reflection.Metadata.dll",
-        "tools/net472/System.Runtime.CompilerServices.Unsafe.dll",
-        "tools/net472/build/Microsoft.NET.ILLink.Analyzers.props",
-        "tools/net472/build/Microsoft.NET.ILLink.Tasks.props",
-        "tools/net472/build/Microsoft.NET.ILLink.targets",
-        "tools/net9.0/ILLink.Tasks.deps.json",
-        "tools/net9.0/ILLink.Tasks.dll",
-        "tools/net9.0/Mono.Cecil.Mdb.dll",
-        "tools/net9.0/Mono.Cecil.Pdb.dll",
-        "tools/net9.0/Mono.Cecil.Rocks.dll",
-        "tools/net9.0/Mono.Cecil.dll",
-        "tools/net9.0/Sdk/Sdk.props",
-        "tools/net9.0/build/Microsoft.NET.ILLink.Analyzers.props",
-        "tools/net9.0/build/Microsoft.NET.ILLink.Tasks.props",
-        "tools/net9.0/build/Microsoft.NET.ILLink.targets",
-        "tools/net9.0/illink.deps.json",
-        "tools/net9.0/illink.dll",
-        "tools/net9.0/illink.runtimeconfig.json",
-        "useSharedDesignerContext.txt"
       ]
     },
     "protobuf-net/3.2.45": {
@@ -480,7 +298,6 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "Microsoft.NET.ILLink.Tasks >= 9.0.1",
       "protobuf-net >= 3.2.45",
       "protobuf-net.BuildTools >= 3.2.33",
       "protobuf-net.Grpc >= 1.2.2",
@@ -493,11 +310,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\qwerty\\Desktop\\SuperCrossPlatformLib\\SuperCrossPlatformLib.csproj",
-      "projectName": "SuperCrossPlatformLib",
-      "projectPath": "C:\\Users\\qwerty\\Desktop\\SuperCrossPlatformLib\\SuperCrossPlatformLib.csproj",
+      "projectUniqueName": "C:\\Users\\qwerty\\Desktop\\SuperCrossPlatformLib\\ProtoGenerator\\ProtoGenerator.csproj",
+      "projectName": "ProtoGenerator",
+      "projectPath": "C:\\Users\\qwerty\\Desktop\\SuperCrossPlatformLib\\ProtoGenerator\\ProtoGenerator.csproj",
       "packagesPath": "C:\\Users\\qwerty\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\qwerty\\Desktop\\SuperCrossPlatformLib\\obj\\",
+      "outputPath": "C:\\Users\\qwerty\\Desktop\\SuperCrossPlatformLib\\ProtoGenerator\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\qwerty\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -531,12 +348,6 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
-          "Microsoft.NET.ILLink.Tasks": {
-            "suppressParent": "All",
-            "target": "Package",
-            "version": "[9.0.1, )",
-            "autoReferenced": true
-          },
           "protobuf-net": {
             "target": "Package",
             "version": "[3.2.45, )"
@@ -573,11 +384,6 @@
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
-      }
-    },
-    "runtimes": {
-      "browser-wasm": {
-        "#import": []
       }
     }
   }

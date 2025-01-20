@@ -1,3 +1,5 @@
 SuperCrossPlatformLib.csproj.SdkResolver.*
-Debug
-Release
+*/**/Debug
+*/**/Release
+*/**/bin
+*.proto

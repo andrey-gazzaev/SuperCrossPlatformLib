@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "f5ZPpZdvPcA=",
+  "dgSpecHash": "Iaahn/bUa5Y=",
   "success": true,
-  "projectFilePath": "C:\\Users\\qwerty\\Desktop\\SuperCrossPlatformLib\\SuperCrossPlatformLib.csproj",
+  "projectFilePath": "C:\\Users\\qwerty\\Desktop\\SuperCrossPlatformLib\\ProtoGenerator\\ProtoGenerator.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\qwerty\\.nuget\\packages\\grpc.core.api\\2.66.0\\grpc.core.api.2.66.0.nupkg.sha512",
-    "C:\\Users\\qwerty\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.1\\microsoft.net.illink.tasks.9.0.1.nupkg.sha512",
     "C:\\Users\\qwerty\\.nuget\\packages\\protobuf-net\\3.2.45\\protobuf-net.3.2.45.nupkg.sha512",
     "C:\\Users\\qwerty\\.nuget\\packages\\protobuf-net.buildtools\\3.2.33\\protobuf-net.buildtools.3.2.33.nupkg.sha512",
     "C:\\Users\\qwerty\\.nuget\\packages\\protobuf-net.core\\3.2.45\\protobuf-net.core.3.2.45.nupkg.sha512",
