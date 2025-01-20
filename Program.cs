@@ -7,8 +7,8 @@ return;
 /// </summary>
 public static partial class CalculationUtils
 {
-    private const double ErrorEpsilon = (double)0.0001m;
-    private const double MinutesInHour = 60;
+    private const decimal ErrorEpsilon = 0.0001m;
+    private const decimal MinutesInHour = 60;
 
     #region Time
 
@@ -17,18 +17,18 @@ public static partial class CalculationUtils
     /// </summary>
     /// <param name="minutes">Minutes.</param>
     [JSExport]
-    [return: JSMarshalAs<JSType.Number>]
-    public static double ConvertMinutesToHours([JSMarshalAs<JSType.Number>] double minutes)
-        => minutes / MinutesInHour;
+    [return: JSMarshalAs<JSType.String>]
+    public static string ConvertMinutesToHours([JSMarshalAs<JSType.String>] string minutes)
+        => Convert.ToString(Convert.ToDecimal(minutes) / MinutesInHour);
 
     /// <summary>
     /// Convert hours to minutes.
     /// </summary>
     /// <param name="hours">Hours.</param>
     [JSExport]
-    [return: JSMarshalAs<JSType.Number>]
-    public static double ConvertHoursToMinutes([JSMarshalAs<JSType.Number>] double hours)
-        => hours * MinutesInHour;
+    [return: JSMarshalAs<JSType.String>]
+    public static string ConvertHoursToMinutes([JSMarshalAs<JSType.String>] string hours)
+        => Convert.ToString(Convert.ToDecimal(hours) * MinutesInHour);
 
     #endregion
 
@@ -41,18 +41,18 @@ public static partial class CalculationUtils
     /// <param name="secondValue">Second value.</param>
     /// <param name="fallbackValue">Fallback value.</param>
     [JSExport]
-    [return: JSMarshalAs<JSType.Number>]
-    public static double SafeDivide(
-        [JSMarshalAs<JSType.Number>] double firstValue,
-        [JSMarshalAs<JSType.Number>] double secondValue,
-        [JSMarshalAs<JSType.Number>] double? fallbackValue = null)
+    [return: JSMarshalAs<JSType.String>]
+    public static string SafeDivide(
+        [JSMarshalAs<JSType.String>] string firstValue,
+        [JSMarshalAs<JSType.String>] string secondValue,
+        [JSMarshalAs<JSType.String>] string? fallbackValue = null)
     {
-        if (secondValue == 0)
+        if (Convert.ToDecimal(secondValue) == decimal.Zero)
         {
-            return fallbackValue.GetValueOrDefault();
+            return fallbackValue;
         }
 
-        return firstValue / secondValue;
+        return Convert.ToString(decimal.Divide(Convert.ToDecimal(firstValue), Convert.ToDecimal(secondValue)));
     }
 
     /// <summary>
@@ -61,8 +61,8 @@ public static partial class CalculationUtils
     /// <param name="firstValue">First value.</param>
     /// <param name="secondValue">Second value.</param>
     public static bool NearlyEquals(
-        double firstValue,
-        double secondValue)
+        decimal firstValue,
+        decimal secondValue)
         => Math.Abs(firstValue - secondValue) < ErrorEpsilon;
 
     /// <summary>
@@ -71,8 +71,8 @@ public static partial class CalculationUtils
     /// <param name="firstValue">First value.</param>
     /// <param name="secondValue">Second value.</param>
     public static bool NearlyEquals(
-        double? firstValue,
-        double? secondValue)
+        decimal? firstValue,
+        decimal? secondValue)
         => firstValue.HasValue != secondValue.HasValue
             ? false
             : NearlyEquals(firstValue.GetValueOrDefault(), secondValue.GetValueOrDefault());
@@ -82,8 +82,8 @@ public static partial class CalculationUtils
     /// </summary>
     /// <param name="amount">Amount.</param>
     /// <param name="cost">Cost.</param>
-    public static double GetPercentFromAmount(double amount, double cost)
-        => SafeDivide(amount, cost);
+    public static decimal GetPercentFromAmount(decimal amount, decimal cost)
+        => Convert.ToDecimal(SafeDivide(Convert.ToString(amount), Convert.ToString(cost)));
 
     /// <summary>
     /// Get amount from percent.
@@ -92,11 +92,11 @@ public static partial class CalculationUtils
     /// <param name="cost">Cost.</param>
     /// <remarks>
     /// We round the amounts because that's how the financial system works.
-    /// We calculate values ​​to the nearest cent. And the user only sees 2 digits after the double point in the user interface.
+    /// We calculate values ​​to the nearest cent. And the user only sees 2 digits after the decimal point in the user interface.
     /// Only when we round amounts, the user sees predictable values ​​when we add up multiple totals.
     /// </remarks>
-    public static double GetAmountFromPercent(double percent, double cost)
-        => double.Round(percent * cost, 2);
+    public static decimal GetAmountFromPercent(decimal percent, decimal cost)
+        => decimal.Round(percent * cost, 2);
 
     #endregion
 
@@ -107,19 +107,19 @@ public static partial class CalculationUtils
     /// </summary>
     /// <param name="directCost">Cost.</param>
     /// <param name="contingencyAmount">Contingency amount.</param>
-    public static double CalculateContingencyPercent(
-        double directCost,
-        double contingencyAmount)
-        => SafeDivide(contingencyAmount, directCost);
+    public static decimal CalculateContingencyPercent(
+        decimal directCost,
+        decimal contingencyAmount)
+        => Convert.ToDecimal(SafeDivide(Convert.ToString(contingencyAmount), Convert.ToString(directCost))); 
 
     /// <summary>
     /// Calculate contingency amount value.
     /// </summary>
     /// <param name="directCost">Cost.</param>
     /// <param name="contingencyPercent">Contingency percent.</param>
-    public static double CalculateContingencyAmount(
-        double directCost,
-        double contingencyPercent)
+    public static decimal CalculateContingencyAmount(
+        decimal directCost,
+        decimal contingencyPercent)
         => GetAmountFromPercent(
             cost: directCost,
             percent: contingencyPercent);
@@ -134,10 +134,10 @@ public static partial class CalculationUtils
     /// <param name="directCost">Cost.</param>
     /// <param name="contingencyAmount">Contingency amount.</param>
     /// <param name="escalationAmount">Escalation amount.</param>
-    public static double CalculateEscalationPercent(
-        double directCost,
-        double contingencyAmount,
-        double escalationAmount)
+    public static decimal CalculateEscalationPercent(
+        decimal directCost,
+        decimal contingencyAmount,
+        decimal escalationAmount)
     {
         return GetPercentFromAmount(
             amount: escalationAmount,
@@ -150,10 +150,10 @@ public static partial class CalculationUtils
     /// <param name="directCost">Cost.</param>
     /// <param name="contingencyPercent">Contingency percent.</param>
     /// <param name="escalationPercent">Escalation percent.</param>
-    public static double CalculateEscalationAmount(
-        double directCost,
-        double contingencyPercent,
-        double escalationPercent)
+    public static decimal CalculateEscalationAmount(
+        decimal directCost,
+        decimal contingencyPercent,
+        decimal escalationPercent)
         => GetAmountFromPercent(
             percent: escalationPercent,
             cost: directCost + CalculateContingencyAmount(
@@ -169,9 +169,9 @@ public static partial class CalculationUtils
     // /// </summary>
     // /// <param name="termOrder">Term order.</param>
     // /// <param name="compoundEscalationPercent">Compound escalation percent.</param>
-    // public static double CalculateEffectiveEscalationPercent(int termOrder, double compoundEscalationPercent)
+    // public static decimal CalculateEffectiveEscalationPercent(int termOrder, decimal compoundEscalationPercent)
     // {
-    //     return (double)Math.Pow((double)(1M + compoundEscalationPercent), termOrder) - 1M;
+    //     return (decimal)Math.Pow((decimal)(1M + compoundEscalationPercent), termOrder) - 1M;
     // }
 
     #endregion
@@ -182,9 +182,9 @@ public static partial class CalculationUtils
     /// Calculate markup percent value.
     /// </summary>
     /// <param name="grossMarginPercent">Gross Margin percent.</param>
-    public static double CalculateMarkupPercent(double grossMarginPercent)
+    public static decimal CalculateMarkupPercent(decimal grossMarginPercent)
     {
-        return SafeDivide(grossMarginPercent, 1 - grossMarginPercent, fallbackValue: 1);
+        return Convert.ToDecimal(SafeDivide(Convert.ToString(grossMarginPercent), Convert.ToString(1 - grossMarginPercent), fallbackValue: Convert.ToString(1)));
     }
 
     /// <summary>
@@ -194,11 +194,11 @@ public static partial class CalculationUtils
     /// <param name="contingencyPercent">Contingency percent.</param>
     /// <param name="aggregatedWEFSPercent">Aggregated WEFS percent.</param>
     /// <param name="markupPercent">Markup percent.</param>
-    public static double CalculateMarkupAmount(
-        double directCost,
-        double contingencyPercent,
-        double aggregatedWEFSPercent,
-        double markupPercent)
+    public static decimal CalculateMarkupAmount(
+        decimal directCost,
+        decimal contingencyPercent,
+        decimal aggregatedWEFSPercent,
+        decimal markupPercent)
     {
         var totalDirectCost = directCost
             + CalculateContingencyAmount(
@@ -223,11 +223,11 @@ public static partial class CalculationUtils
     /// <param name="contingencyAmount">Contingency amount.</param>
     /// <param name="aggregatedWEFSAmount">Aggregated WEFS amount.</param>
     /// <param name="grossMarginAmount">Gross Margin amount.</param>
-    public static double CalculateGrossMarginPercent(
-        double directCost,
-        double contingencyAmount,
-        double aggregatedWEFSAmount,
-        double grossMarginAmount)
+    public static decimal CalculateGrossMarginPercent(
+        decimal directCost,
+        decimal contingencyAmount,
+        decimal aggregatedWEFSAmount,
+        decimal grossMarginAmount)
     {
         var totalDirectCost = directCost + contingencyAmount + aggregatedWEFSAmount;
 
@@ -243,11 +243,11 @@ public static partial class CalculationUtils
     /// <param name="contingencyPercent">Contingency percent.</param>
     /// <param name="aggregatedWEFSPercent">Aggregated WEFS percent.</param>
     /// <param name="grossMarginPercent">Gross Margin percent.</param>
-    public static double CalculateGrossMarginAmount(
-        double directCost,
-        double contingencyPercent,
-        double aggregatedWEFSPercent,
-        double grossMarginPercent)
+    public static decimal CalculateGrossMarginAmount(
+        decimal directCost,
+        decimal contingencyPercent,
+        decimal aggregatedWEFSPercent,
+        decimal grossMarginPercent)
     {
         var totalDirectCost = directCost
             + CalculateContingencyAmount(
@@ -258,8 +258,8 @@ public static partial class CalculationUtils
                 contingencyPercent: contingencyPercent,
                 aggregatedWEFSPercent: aggregatedWEFSPercent);
 
-        var sellPrice = SafeDivide(totalDirectCost, 1 - grossMarginPercent);
-        return double.Round(sellPrice - totalDirectCost, 2);
+        var sellPrice = SafeDivide(Convert.ToString(totalDirectCost), Convert.ToString(1 - grossMarginPercent));
+        return decimal.Round(Convert.ToDecimal(sellPrice) - totalDirectCost, 2);
     }
 
     #endregion
@@ -272,10 +272,10 @@ public static partial class CalculationUtils
     /// <param name="directCost">Direct cost.</param>
     /// <param name="contingencyAmount">Contingency amount.</param>
     /// <param name="aggregatedWEFSAmount">Aggregated WEFS amount.</param>
-    public static double CalculateAggregatedWEFSPercent(
-        double directCost,
-        double contingencyAmount,
-        double aggregatedWEFSAmount)
+    public static decimal CalculateAggregatedWEFSPercent(
+        decimal directCost,
+        decimal contingencyAmount,
+        decimal aggregatedWEFSAmount)
     {
         return GetPercentFromAmount(
             amount: aggregatedWEFSAmount,
@@ -288,10 +288,10 @@ public static partial class CalculationUtils
     /// <param name="directCost">Direct cost.</param>
     /// <param name="contingencyPercent">Contingency percent.</param>
     /// <param name="aggregatedWEFSPercent">Aggregate WEFS percent.</param>
-    public static double CalculateAggregatedWEFSAmount(
-        double directCost,
-        double contingencyPercent,
-        double aggregatedWEFSPercent)
+    public static decimal CalculateAggregatedWEFSAmount(
+        decimal directCost,
+        decimal contingencyPercent,
+        decimal aggregatedWEFSPercent)
     {
         var contingencyAmount = CalculateContingencyAmount(
             directCost: directCost,
@@ -313,11 +313,11 @@ public static partial class CalculationUtils
     /// <param name="contingencyAmount">Contingency amount.</param>
     /// <param name="escalationAmount">Escalation amount.</param>
     /// <param name="materialWfsAmount">Material WEFS amount.</param>
-    public static double CalculateTotalDirectCost(
-        double directCost,
-        double contingencyAmount,
-        double escalationAmount,
-        double materialWfsAmount)
+    public static decimal CalculateTotalDirectCost(
+        decimal directCost,
+        decimal contingencyAmount,
+        decimal escalationAmount,
+        decimal materialWfsAmount)
     {
         return directCost
             + contingencyAmount
@@ -331,10 +331,10 @@ public static partial class CalculationUtils
     /// <param name="directCost">Cost.</param>
     /// <param name="contingencyAmount">Contingency amount.</param>
     /// <param name="aggregatedWefsAmount">Material WFS amount.</param>
-    public static double CalculateTotalDirectCost(
-        double directCost,
-        double contingencyAmount,
-        double aggregatedWefsAmount)
+    public static decimal CalculateTotalDirectCost(
+        decimal directCost,
+        decimal contingencyAmount,
+        decimal aggregatedWefsAmount)
     {
         return directCost
                + contingencyAmount
@@ -349,12 +349,12 @@ public static partial class CalculationUtils
     /// <param name="escalationAmount">Escalation amount.</param>
     /// <param name="materialWefsAmount">Material WEFS amount.</param>
     /// <param name="grossMarginAmount">Gross Margin amount.</param>
-    public static double CalculateSellPrice(
-        double directCost,
-        double contingencyAmount,
-        double escalationAmount,
-        double materialWefsAmount,
-        double grossMarginAmount)
+    public static decimal CalculateSellPrice(
+        decimal directCost,
+        decimal contingencyAmount,
+        decimal escalationAmount,
+        decimal materialWefsAmount,
+        decimal grossMarginAmount)
     {
         var totalDirectCost = CalculateTotalDirectCost(
             directCost: directCost,
