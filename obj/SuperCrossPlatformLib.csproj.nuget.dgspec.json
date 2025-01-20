@@ -50,6 +50,24 @@
               "target": "Package",
               "version": "[9.0.1, )",
               "autoReferenced": true
+            },
+            "protobuf-net": {
+              "target": "Package",
+              "version": "[3.2.45, )"
+            },
+            "protobuf-net.BuildTools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.2.33, )"
+            },
+            "protobuf-net.Grpc": {
+              "target": "Package",
+              "version": "[1.2.2, )"
+            },
+            "protobuf-net.Reflection": {
+              "target": "Package",
+              "version": "[3.2.12, )"
             }
           },
           "imports": [

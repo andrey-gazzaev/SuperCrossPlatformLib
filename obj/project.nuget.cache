@@ -1,10 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "YH5hry9i7gU=",
+  "dgSpecHash": "f5ZPpZdvPcA=",
   "success": true,
   "projectFilePath": "C:\\Users\\qwerty\\Desktop\\SuperCrossPlatformLib\\SuperCrossPlatformLib.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\qwerty\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.1\\microsoft.net.illink.tasks.9.0.1.nupkg.sha512"
+    "C:\\Users\\qwerty\\.nuget\\packages\\grpc.core.api\\2.66.0\\grpc.core.api.2.66.0.nupkg.sha512",
+    "C:\\Users\\qwerty\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.1\\microsoft.net.illink.tasks.9.0.1.nupkg.sha512",
+    "C:\\Users\\qwerty\\.nuget\\packages\\protobuf-net\\3.2.45\\protobuf-net.3.2.45.nupkg.sha512",
+    "C:\\Users\\qwerty\\.nuget\\packages\\protobuf-net.buildtools\\3.2.33\\protobuf-net.buildtools.3.2.33.nupkg.sha512",
+    "C:\\Users\\qwerty\\.nuget\\packages\\protobuf-net.core\\3.2.45\\protobuf-net.core.3.2.45.nupkg.sha512",
+    "C:\\Users\\qwerty\\.nuget\\packages\\protobuf-net.grpc\\1.2.2\\protobuf-net.grpc.1.2.2.nupkg.sha512",
+    "C:\\Users\\qwerty\\.nuget\\packages\\protobuf-net.reflection\\3.2.12\\protobuf-net.reflection.3.2.12.nupkg.sha512",
+    "C:\\Users\\qwerty\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",
+    "C:\\Users\\qwerty\\.nuget\\packages\\system.io.pipelines\\8.0.0\\system.io.pipelines.8.0.0.nupkg.sha512"
   ],
   "logs": []
 }

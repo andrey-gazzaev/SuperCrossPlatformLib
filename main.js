@@ -3,15 +3,9 @@
 
 import { dotnet } from './_framework/dotnet.js'
 
-const { setModuleImports, getAssemblyExports, getConfig, runMain } = await dotnet
+const { getAssemblyExports, getConfig, runMain } = await dotnet
     .withApplicationArguments("start")
     .create();
-
-setModuleImports('main.js', {
-    dom: {
-        setInnerText: (selector, time) => document.querySelector(selector).innerText = time
-    }
-});
 
 const config = getConfig();
 const exports = await getAssemblyExports(config.mainAssemblyName);
