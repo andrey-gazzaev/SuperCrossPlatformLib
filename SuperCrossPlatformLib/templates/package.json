@@ -1,0 +1,23 @@
+{
+  "name": "super-cross-platform-lib",
+  "version": "0.1.0",
+  "description": "Demo project on using C# libraries in JS projects",
+  "engines": {
+		"node": ">=22.0.0"
+	},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "C#",
+    "JS",
+    "libs"
+  ],
+  "author": {
+    "name": "Gazzaev Andrey",
+    "email": "agazzaev2@gmail.com"
+  },
+  "license": "ISC",
+  "type": "module",
+	"exports": "./index.js"
+}
