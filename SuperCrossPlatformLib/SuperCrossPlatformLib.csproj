@@ -6,7 +6,7 @@
     <!-- add this piece -->
     <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <WasmMainJSPath>main.js</WasmMainJSPath>
+    <WasmMainJSPath>templates/index.js</WasmMainJSPath>
     <!-- end -->
     
     <ImplicitUsings>enable</ImplicitUsings>
