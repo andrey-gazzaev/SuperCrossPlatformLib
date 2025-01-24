@@ -1,0 +1,38 @@
+name: dotnet package
+
+on: [push]
+
+jobs:
+  build:
+
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Install dependencies
+        run: dotnet workload install wasm-tools
+
+      - name: Create the JS lib package
+        run: dotnet publish SuperCrossPlatformLib -c Release
+
+      - name: Make the package
+        shell: pwsh
+        run: |
+          .\make-package.ps1
+
+      - name: Push generated lib to JS repository
+        uses: nkoppel/push-files-to-another-repository@v1.1.4
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-files: 'SuperCrossPlatformLib/bin/Release/net9.0/browser-wasm/AppBundle/'
+          destination-username: 'andrey-gazzaev'
+          destination-repository: 'SuperCrossPlatformLibAutoGen.git'
+          destination-directory: '/'
+          commit-email: 'andrey.gazzaev@gmail.com'
