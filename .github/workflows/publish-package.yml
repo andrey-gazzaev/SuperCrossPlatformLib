@@ -36,3 +36,4 @@ jobs:
           destination-repository: 'SuperCrossPlatformLibAutoGen'
           destination-directory: '/'
           commit-email: 'andrey.gazzaev@gmail.com'
+          destination-branch: 'main'
