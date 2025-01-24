@@ -33,6 +33,6 @@ jobs:
         with:
           source-files: 'SuperCrossPlatformLib/bin/Release/net9.0/browser-wasm/AppBundle/'
           destination-username: 'andrey-gazzaev'
-          destination-repository: 'SuperCrossPlatformLibAutoGen.git'
+          destination-repository: 'SuperCrossPlatformLibAutoGen'
           destination-directory: '/'
           commit-email: 'andrey.gazzaev@gmail.com'
