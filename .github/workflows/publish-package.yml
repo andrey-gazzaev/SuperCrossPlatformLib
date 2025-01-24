@@ -37,8 +37,7 @@ jobs:
             SOURCE_FILES: 'SuperCrossPlatformLib/bin/Release/net9.0/browser-wasm/AppBundle/'
             CLONE_DIRECTORY: 'SuperCrossPlatformLibAutoGen'
             DESTINATION_DIRECTORY: '/'
-        script: |
-
+        run: |
           # Setup git
           git config --global user.email "$COMMIT_EMAIL"
           git config --global user.name "$COMMIT_USERNAME"
