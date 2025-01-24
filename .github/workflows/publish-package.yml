@@ -45,16 +45,6 @@ jobs:
           # Remove git directory if it exists to prevent errors
           rm -rf .git
 
-          # If source files are not from workflow container, clone from source git repository
-          if [ "true" -ne "$FROM_CONTAINER" ]
-          then
-            echo
-            echo "##### Cloning source git repository - https://github.com/$GITHUB_REPOSITORY.git #####"
-
-            git clone "https://github.com/$GITHUB_REPOSITORY.git" repo
-            cd repo
-          fi
-
           echo
           echo "##### Cloning destination git repository - https://$API_TOKEN_GITHUB@github.com/$DESTINATION_USERNAME/$DESTINATION_REPOSITORY.git #####"
 
