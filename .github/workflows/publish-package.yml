@@ -28,49 +28,55 @@ jobs:
 
       - name: Push generated lib to JS repository
         env:
-            API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+            SSH_API_WRITE: ${{ secrets.SSH_API_WRITE }}
             DESTINATION_BRANCH: 'main'
             COMMIT_EMAIL: 'andrey.gazzaev@gmail.com'
             COMMIT_USERNAME: 'andrey-gazzaev'
             DESTINATION_USERNAME: 'andrey-gazzaev'
             DESTINATION_REPOSITORY: 'SuperCrossPlatformLibAutoGen'
-            SOURCE_FILES: 'SuperCrossPlatformLib/bin/Release/net9.0/browser-wasm/AppBundle/'
+            SOURCE_FILES: 'SuperCrossPlatformLib/bin/Release/net9.0/browser-wasm/AppBundle'
             CLONE_DIRECTORY: 'SuperCrossPlatformLibAutoGen'
             DESTINATION_DIRECTORY: '/'
+            GITHUB_REPOSITORY: ${{ github.event.repository.name }}
+            GITHUB_SHA: ${{ github.sha }}
         run: |
-          # Setup git
-          git config --global user.email "$COMMIT_EMAIL"
-          git config --global user.name "$COMMIT_USERNAME"
-
-          # Remove git directory if it exists to prevent errors
-          rm -rf .git
+          rm -rf .git 
 
           echo
-          echo "##### Cloning destination git repository - https://$API_TOKEN_GITHUB@github.com/$DESTINATION_USERNAME/$DESTINATION_REPOSITORY.git #####"
+          echo "##### Cloning destination git repository - https://$SSH_API_WRITE@github.com/$DESTINATION_USERNAME/$DESTINATION_REPOSITORY.git #####"
 
-          git clone --single-branch --branch "$DESTINATION_BRANCH" "https://$API_TOKEN_GITHUB@github.com/$DESTINATION_USERNAME/$DESTINATION_REPOSITORY.git" "$CLONE_DIRECTORY"
+          git clone --single-branch --branch "$DESTINATION_BRANCH" "https://$SSH_API_WRITE@github.com/$DESTINATION_USERNAME/$DESTINATION_REPOSITORY.git" "$CLONE_DIRECTORY"
           ls -la "$CLONE_DIRECTORY"
-
+ 
           echo
           echo "##### Copying contents to git repo #####"
 
-          mkdir -p "$CLONE_DIRECTORY/$DESTINATION_DIRECTORY"
-          cp -rvf $SOURCE_FILES "$CLONE_DIRECTORY/$DESTINATION_DIRECTORY"
-          cd "$CLONE_DIRECTORY"
+          cd $CLONE_DIRECTORY/$DESTINATION_DIRECTORY
+
+          git config --global user.email "$COMMIT_EMAIL"
+          git config --global user.name "$COMMIT_USERNAME"
+
+          git checkout $DESTINATION_BRANCH
+
+          git pull
+
+          cd ..
+
+          cp -rvf $SOURCE_FILES/* "$CLONE_DIRECTORY/$DESTINATION_DIRECTORY"
+
+          cd $CLONE_DIRECTORY/$DESTINATION_DIRECTORY
 
           echo
           echo "##### Adding git commit #####"
 
           ORIGIN_COMMIT="https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
-          COMMIT_MESSAGE="${COMMIT_MESSAGE/ORIGIN_COMMIT/$ORIGIN_COMMIT}"
 
           git add .
           git status
 
-          # don't commit if no changes were made
-          git diff-index --quiet HEAD || git commit --message "$COMMIT_MESSAGE"
+          git commit -m "$ORIGIN_COMMIT"
 
           echo
           echo "##### Pushing git commit #####"
-          # --set-upstream: sets the branch when pushing to a branch that does not exist
-          git push origin --set-upstream "$DESTINATION_BRANCH"
+
+          git push origin "$DESTINATION_BRANCH"
