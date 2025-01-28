@@ -17,6 +17,7 @@
     "name": "Gazzaev Andrey",
     "email": "agazzaev2@gmail.com"
   },
+  "main": "index.js",
   "license": "ISC",
   "type": "module",
   "types": "types/index.d.ts"
