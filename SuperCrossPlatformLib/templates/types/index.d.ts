@@ -1,5 +1,5 @@
 declare module "calculation-utils" {
-  export namespace calculationUtils {
+  export namespace CalculationUtils {
     export function ConvertMinutesToHours(minutes: string): string;
     export function ConvertHoursToMinutes(hours: string): string;
     export function SafeDivide(
